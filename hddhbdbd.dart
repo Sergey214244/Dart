@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MaterialApp(home: RecordingScreen()));
+
+class RecordingScreen extends StatefulWidget {
+  const RecordingScreen({super.key});
+  @override
+  State<RecordingScreen> createState() => _RecordingScreenState();
+}
+
+class _RecordingScreenState extends State<RecordingScreen> {
+  bool isRecording = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF8F9FF),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children:,
+            ),
+          ),
+          GestureDetector(
+            onTap: () => setState(() => isRecording = !isRecording),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              width: 240,
+              height: 240,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isRecording ? Colors.red.shade400 : const Color(0xFF42A5F5),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.1),
+                    spreadRadius: 25,
+                    blurRadius: 50,
+                  ),
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.05),
+                    spreadRadius: 45,
+                    blurRadius: 70,
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 60),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _bottomAction("+ Add photo"),
+                _dot(),
+                _bottomAction("+ Type instead"),
+                _dot(),
+                _bottomAction("+ Voice only"),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _bottomAction(String text) => Text(
+        text,
+        style: const TextStyle(
+          color: Color(0xFF42A5F5),
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+      );
+
+  Widget _dot() => const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Text("•", style: TextStyle(color: Color(0xFF42A5F5))),
+      );
+}
